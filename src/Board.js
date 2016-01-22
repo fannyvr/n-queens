@@ -202,17 +202,19 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var rows = this.rows();
       var conflict = false;
       var self = this;
-      _.each(rows, function(row, i) {
+      var n = this.get('n');
+      var i = -Math.abs(n - 2);
+
+      for (var i; i < n; i++) {
         if (self.hasMajorDiagonalConflictAt(i)) {
           conflict = true;
         }
-      });
+      };
+
       return conflict;
     },
-
 
 
     // Minor Diagonals - go from top-right to bottom-left
@@ -237,15 +239,17 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      var rows = this.rows();
       var conflict = false;
       var self = this;
+      var n = this.get('n');
+      var i = n + 2;
 
-      _.each(rows, function(row, i){
-        if(self.hasMinorDiagonalConflictAt(i)){
+      for (var j = 0; j <= i; j++) {
+        if(self.hasMinorDiagonalConflictAt(j)){
           conflict = true;
         }
-      })
+      };
+  
       return conflict;
     }
 
